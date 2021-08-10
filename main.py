@@ -1,14 +1,14 @@
 from requests import get 
 
-endpoint = "https://random-data-api.com/api/address/random_address"
+url = "https://random-data-api.com/api/restaurant/random_restaurant"
+data = {"size":2}
 
-data = {"size":10}
+r = get(url,data).json()
 
-def main():
-  
-  r = get(endpoint,data).json()
-  print(r)
-
-if __name__ == "__main__":
-   main()  
-
+for i in r:
+  print(i["id"])
+  for dia in i["hours"]:
+     if i["hours"][dia]["is_closed"] == True:
+         print(dia,"Aberto")
+     else:
+         print(dia, "fechado")
