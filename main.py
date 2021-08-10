@@ -1,25 +1,21 @@
-pessoas = homens = mulheres = 0
+total = totalmil = menor = produtos = 0
+barato = ""
 while True:
-    print("=" * 20)
-    print("CADASTRE UMA PESSOA")
-    print("=" * 20)
-    idade = int(input("Idade: "))
-    sexo = " "
-    while sexo not in "MF":
-        sexo = str(input("Sexo: [M/F] ")).strip().upper()[0]
-    print("=" * 20)
-    if idade >= 18:
-        pessoas += 1
-    if sexo == "M":
-        homens += 1
-    if sexo == "F" and idade < 20:
-        mulheres += 1
+    produto = str(input("Produto: ")).strip()
+    valor = float(input("Valor: R$"))
+    produtos += 1
+    total += valor
+    if valor > 1000:
+        totalmil += 1
+    if produtos == 1 or valor < menor:
+        menor = valor
+        barato = produto
     continuar = " "
     while continuar not in "SN":
         continuar = str(input("Quer continuar? [S/N] ")).strip().upper()[0]
     if continuar == "N":
-        print("Finalizado!!")
+        print("{:-^40}".format("FIM DO PROGRAMA"))
         break
-print(f"Temos um total de {pessoas} pessoa(s) maior(es) de 18 anos!!")
-print(f"Temos um total de {homens} Homens cadastrados no sistema!!")
-print(f"Temos um total de {mulheres} Mulheres menores de 20 anos!!")
+print(f"O total gasto na compra foi de R${total:.2f}")
+print(f"O total de produtos acima de R$1000.00 é de: {totalmil}")
+print(f"O produto mais barato é o/a {barato} que custa R${menor:.2f}")
